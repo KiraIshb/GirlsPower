@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(
+  home: UserPanel(),
+));
+
+class UserPanel extends StatefulWidget {
+  const UserPanel({super.key});
+
+  @override
+  State<UserPanel> createState() => _UserPanelState();
+}
+
+class _UserPanelState extends State<UserPanel> {
+
+  int _count = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueGrey,
+      appBar: AppBar(
+        title: Text('User'),
+        centerTitle: true,
+        backgroundColor: Colors.lightGreenAccent,
+      ),
+      body: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Column(
+            children: [
+              Padding(padding: EdgeInsets.only(top: 20)),
+              Text('Александр Морозов', style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),),
+              Padding(padding: EdgeInsets.only(top: 10)),
+              CircleAvatar(
+                backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlECQSBGh032SFnX3lkF4CbEx9PvZxbFFcFscHj5qp9DjnVnYaohiMOKuLKrdJiF-8sVM&usqp=CAU'),
+                radius: 50,
+              ),
+              Padding(padding: EdgeInsets.only(top: 10)),
+              Row(
+                children: [
+                  Icon(Icons.email_outlined, size: 20, color: Colors.black45,),
+                  Padding(padding: EdgeInsets.only(left: 7)),
+                  Text('alexandrmoroshov@mail.ru', style: TextStyle(color: Colors.black45),)
+                ],
+              ),
+              Padding(padding: EdgeInsets.only(top: 10)),
+              Text('Count: $_count', style: TextStyle(color: Colors.black45))
+            ],
+          ),]
+        )
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.lightGreenAccent,
+        onPressed: () {
+          setState(() {
+            _count++;
+          });
+        },
+      ),
+    );
+  }
+}
